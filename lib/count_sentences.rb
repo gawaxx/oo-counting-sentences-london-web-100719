@@ -27,15 +27,11 @@ class String
   end
 
   def count_sentences
-    if self.end_with?(".")
-      self.split
-    elsif self.end_with?("?")
-      self.split
-    elsif self.end_with?("!")
-      self.split
-    end 
-    
-    return self.count
-      
-  end
+    counter = 0 
+    self.split(" ").each do |word|
+      if word.sentence? || word.question? || word.exclamation?
+        counter += 1
+      end
+    end
+    return counter
 end
